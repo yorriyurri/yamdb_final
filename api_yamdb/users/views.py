@@ -1,17 +1,16 @@
+from api.permissions import AdminOnly
+from api.serializers import (GetTokenSerializer, SignUpSerializer,
+                             UsersSerializer)
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, permissions, status
+from rest_framework import permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
-
-from api.permissions import AdminOnly
-from api.serializers import (GetTokenSerializer, SignUpSerializer,
-                             UsersSerializer)
 from reviews.models import User
 
 
