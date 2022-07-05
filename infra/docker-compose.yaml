@@ -9,7 +9,7 @@ services:
       - ./.env
 
   web:
-    image: yamdb_final:latest
+    image: yorriyurri/yamdb_final:latest
     restart: always
     depends_on:
       - db
@@ -17,7 +17,7 @@ services:
       - ./.env
 
   web-prepare:
-    image: yamdb_final:latest
+    image: yorriyurri/yamdb_final:latest
     volumes:
       - static_value:/app/static/:rw
     env_file:
@@ -26,7 +26,7 @@ services:
       - pre-run
 
   web-migrate:
-    image: yamdb_final:latest
+    image: yorriyurri/yamdb_final:latest
 #    restart: on-failure
     depends_on:
       - db
