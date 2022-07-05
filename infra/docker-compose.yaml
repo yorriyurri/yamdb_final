@@ -11,39 +11,25 @@ services:
   web:
     image: yorriyurri/yamdb_final:latest
     restart: always
-    depends_on:
-      - db
-    env_file:
-      - ./.env
-
-  web-prepare:
-    image: yorriyurri/yamdb_final:latest
     volumes:
-      - static_value:/app/static/:rw
-    env_file:
-      - ./.env
-    command:
-      - pre-run
-
-  web-migrate:
-    image: yorriyurri/yamdb_final:latest
-#    restart: on-failure
+      - static_value:/app/static/
+      - media_value:/app/media/
     depends_on:
       - db
     env_file:
       - ./.env
-    command:
-      - migrate
 
   nginx:
     image: nginx:1.21.3-alpine
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
-      - ../infra/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - static_value:/var/html/static/:ro
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - static_value:/var/html/static/
+      - media_value:/var/html/media/
     depends_on:
       - web
 
 volumes:
   static_value:
+  media_value:
