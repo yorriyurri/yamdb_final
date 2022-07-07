@@ -59,7 +59,7 @@ docker-compose exec web python manage.py createsuperuser
 ### Cобрать статические файлы::
 
 ```python
-docker-compose exec web python collecstatic --no-input
+docker-compose exec web python collectstatic --no-input
 ```
 
 ## Заполнение базы данными:
